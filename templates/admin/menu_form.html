@@ -1,0 +1,268 @@
+{% extends 'base.html' %}
+
+{% block title %}
+
+{% if item %}
+Edit Menu Item
+{% else %}
+Add Menu Item
+{% endif %}
+
+{% endblock %}
+
+{% block content %}
+
+<section class="page-hero">
+
+    <div class="container text-center">
+
+        <h1 class="page-hero-title">
+
+            {% if item %}
+            Edit Menu Item
+            {% else %}
+            Add Menu Item
+            {% endif %}
+
+        </h1>
+
+        <p>
+            Manage Gen X Cafe menu items
+        </p>
+
+    </div>
+
+</section>
+
+<section class="section-pad">
+
+    <div class="container">
+
+        <div class="row justify-content-center">
+
+            <div class="col-lg-8">
+
+                <div class="menu-card p-5">
+
+                    <form method="POST"
+                          enctype="multipart/form-data">
+
+                        <div class="row g-4">
+
+                            <!-- ITEM NAME -->
+
+                            <div class="col-md-6">
+
+                                <label class="form-label">
+
+                                    Item Name
+
+                                </label>
+
+                                <input type="text"
+                                       name="name"
+                                       class="form-control"
+                                       value="{{ item.name if item else '' }}"
+                                       required>
+
+                            </div>
+
+                            <!-- PRICE -->
+
+                            <div class="col-md-6">
+
+                                <label class="form-label">
+
+                                    Price
+
+                                </label>
+
+                                <input type="number"
+                                       step="0.01"
+                                       name="price"
+                                       class="form-control"
+                                       value="{{ item.price if item else '' }}"
+                                       required>
+
+                            </div>
+
+                            <!-- CATEGORY -->
+
+                            <div class="col-12">
+
+                                <label class="form-label">
+
+                                    Category
+
+                                </label>
+
+                                <select name="category"
+                                        class="form-select"
+                                        required>
+
+                                    {% for cat in categories %}
+
+                                    <option value="{{ cat }}"
+
+                                    {% if item and item.category == cat %}
+                                    selected
+                                    {% endif %}>
+
+                                        {{ cat }}
+
+                                    </option>
+
+                                    {% endfor %}
+
+                                </select>
+
+                            </div>
+
+                            <!-- DESCRIPTION -->
+
+                            <div class="col-12">
+
+                                <label class="form-label">
+
+                                    Description
+
+                                </label>
+
+                                <textarea name="description"
+                                          rows="5"
+                                          class="form-control"
+                                          required>{% if item %}{{ item.description }}{% endif %}</textarea>
+
+                            </div>
+
+                            <!-- IMAGE -->
+
+                            <div class="col-12">
+
+                                <label class="form-label">
+
+                                    Upload Image
+
+                                </label>
+
+                                <input type="file"
+                                       name="image"
+                                       class="form-control">
+
+                            </div>
+
+                            <!-- OLD IMAGE -->
+
+                            {% if item and item.image %}
+
+                            <div class="col-12 text-center">
+
+                                <p class="mb-2">
+
+                                    Current Image
+
+                                </p>
+
+                                <img src="{{ url_for('uploaded_file', filename=item.image) }}"
+                                     width="200"
+                                     class="rounded shadow">
+
+                            </div>
+
+                            {% endif %}
+
+                            <!-- FEATURED -->
+
+                            <div class="col-md-6">
+
+                                <div class="form-check">
+
+                                    <input class="form-check-input"
+                                           type="checkbox"
+                                           name="is_featured"
+
+                                           {% if item and item.is_featured %}
+                                           checked
+                                           {% endif %}>
+
+                                    <label class="form-check-label">
+
+                                        Featured Item
+
+                                    </label>
+
+                                </div>
+
+                            </div>
+
+                            <!-- AVAILABLE -->
+
+                            <div class="col-md-6">
+
+                                <div class="form-check">
+
+                                    <input class="form-check-input"
+                                           type="checkbox"
+                                           name="is_available"
+
+                                           {% if item %}
+
+                                                {% if item.is_available %}
+                                                checked
+                                                {% endif %}
+
+                                           {% else %}
+
+                                                checked
+
+                                           {% endif %}>
+
+                                    <label class="form-check-label">
+
+                                        Available
+
+                                    </label>
+
+                                </div>
+
+                            </div>
+
+                            <!-- BUTTONS -->
+
+                            <div class="col-12 d-flex justify-content-center gap-3 mt-4">
+
+                                <button type="submit"
+                                        class="btn btn-primary btn-lg px-5">
+
+                                    {% if item %}
+                                    Update Item
+                                    {% else %}
+                                    Add Item
+                                    {% endif %}
+
+                                </button>
+
+                                <a href="{{ url_for('admin.menu') }}"
+                                   class="btn btn-outline-light btn-lg px-5">
+
+                                    Cancel
+
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

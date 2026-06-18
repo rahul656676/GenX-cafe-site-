@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="description" content="Gen X Cafe - Premium Coffee, Food & Ambiance in Jaipur">
+
+<meta name="keywords" content="cafe, coffee, restaurant, Jaipur, burgers, pizza">
+
+<meta property="og:title" content="Gen X Cafe">
+
+<meta property="og:description" content="Where Every Sip Tells a Story">
+
+<title>
+{% block title %}
+Gen X Cafe
+{% endblock %}
+</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+
+{% block extra_css %}{% endblock %}
+
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<nav class="navbar navbar-expand-lg fixed-top">
+
+<div class="container">
+
+<a class="navbar-brand" href="{{ url_for('public.home') }}">
+
+☕ Gen<span class="accent">X</span> Cafe
+
+</a>
+
+<button class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navMenu">
+
+<i class="bi bi-list text-white"></i>
+
+</button>
+
+<div class="collapse navbar-collapse" id="navMenu">
+
+<ul class="navbar-nav ms-auto align-items-center gap-3">
+
+<li class="nav-item">
+<a class="nav-link" href="{{ url_for('public.home') }}">
+Home
+</a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link" href="{{ url_for('public.menu') }}">
+Menu
+</a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link" href="{{ url_for('public.booking') }}">
+Reserve
+</a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link" href="{{ url_for('public.about') }}">
+About
+</a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link" href="{{ url_for('public.contact') }}">
+Contact
+</a>
+</li>
+
+{% if session.get('user_id') %}
+
+<li class="nav-item">
+<a class="nav-link btn btn-warning text-dark px-3"
+   href="{{ url_for('admin.dashboard') }}">
+Dashboard
+</a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link"
+   href="{{ url_for('auth.logout') }}">
+Logout
+</a>
+</li>
+
+{% else %}
+
+<li class="nav-item">
+<a class="nav-link btn btn-warning text-dark px-3"
+   href="{{ url_for('auth.login') }}">
+Admin
+</a>
+</li>
+
+{% endif %}
+
+</ul>
+
+</div>
+
+</div>
+
+</nav>
+
+<!-- FLASH -->
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+
+{% if messages %}
+
+<div class="flash-container">
+
+{% for cat, msg in messages %}
+
+<div class="alert alert-{{ cat }} alert-dismissible fade show">
+
+{{ msg }}
+
+<button type="button"
+        class="btn-close"
+        data-bs-dismiss="alert">
+</button>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+{% endif %}
+
+{% endwith %}
+
+<!-- MAIN -->
+
+<main>
+
+{% block content %}
+
+{% endblock %}
+
+</main>
+
+<!-- FOOTER -->
+
+<footer class="footer">
+
+<div class="container">
+
+<div class="row g-4">
+
+<div class="col-lg-4">
+
+<h4 class="footer-brand">
+☕ GenX Cafe
+</h4>
+
+<p>
+Premium coffee, artisan food,
+and unforgettable ambiance.
+</p>
+
+<div class="social-links">
+
+<a href="#">
+<i class="bi bi-instagram"></i>
+</a>
+
+<a href="#">
+<i class="bi bi-facebook"></i>
+</a>
+
+<a href="#">
+<i class="bi bi-twitter-x"></i>
+</a>
+
+<a href="#">
+<i class="bi bi-whatsapp"></i>
+</a>
+
+</div>
+
+</div>
+
+<div class="col-lg-4">
+
+<h5>
+Quick Links
+</h5>
+
+<ul class="footer-links">
+
+<li>
+<a href="{{ url_for('public.home') }}">
+Home
+</a>
+</li>
+
+<li>
+<a href="{{ url_for('public.menu') }}">
+Menu
+</a>
+</li>
+
+<li>
+<a href="{{ url_for('public.booking') }}">
+Reserve
+</a>
+</li>
+
+<li>
+<a href="{{ url_for('public.contact') }}">
+Contact
+</a>
+</li>
+
+</ul>
+
+</div>
+
+<div class="col-lg-4">
+
+<h5>
+Contact
+</h5>
+
+<p>
+📍 MG Road, Jaipur
+</p>
+
+<p>
+📞 +91 98765 43210
+</p>
+
+<p>
+✉ hello@genxcafe.com
+</p>
+
+</div>
+
+</div>
+
+<hr>
+
+<div class="text-center">
+
+© 2026 Gen X Cafe. All Rights Reserved.
+
+</div>
+
+</div>
+
+</footer>
+
+<!-- CHATBOT BUTTON -->
+
+<div class="chatbot-fab"
+     id="chatbotFab">
+
+<i class="bi bi-chat-dots-fill"></i>
+
+</div>
+
+<!-- CHAT WINDOW -->
+
+<div class="chatbot-window"
+     id="chatbotWindow">
+
+<div class="chatbot-header">
+
+<div class="d-flex align-items-center gap-2">
+
+<div class="bot-avatar">
+🤖
+</div>
+
+<div>
+
+<strong>
+Barista Bot
+</strong>
+
+<br>
+
+<small>
+Online
+</small>
+
+</div>
+
+</div>
+
+<button class="btn-close btn-close-white"
+        id="chatClose">
+</button>
+
+</div>
+
+<div class="chatbot-messages"
+     id="chatMessages">
+
+<div class="chat-msg bot">
+
+👋 Hey! I'm Barista Bot.
+Ask me anything about menu,
+reservation or cafe timings.
+
+</div>
+
+</div>
+
+<div class="chatbot-input">
+
+<input type="text"
+       id="chatInput"
+       class="form-control"
+       placeholder="Type message...">
+
+<button class="btn btn-warning"
+        id="chatSend">
+
+<i class="bi bi-send-fill"></i>
+
+</button>
+
+</div>
+
+</div>
+
+<!-- SCRIPTS -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const chatbotFab = document.getElementById("chatbotFab");
+    const chatbotWindow = document.getElementById("chatbotWindow");
+    const chatClose = document.getElementById("chatClose");
+    const chatInput = document.getElementById("chatInput");
+    const chatSend = document.getElementById("chatSend");
+    const chatMessages = document.getElementById("chatMessages");
+
+    chatbotFab.addEventListener("click", function () {
+
+        chatbotWindow.classList.toggle("active");
+
+    });
+
+    chatClose.addEventListener("click", function () {
+
+        chatbotWindow.classList.remove("active");
+
+    });
+
+    async function sendMessage() {
+
+        const message = chatInput.value.trim();
+
+        if (!message) return;
+
+        const userDiv = document.createElement("div");
+
+        userDiv.className = "chat-msg user";
+
+        userDiv.innerText = message;
+
+        chatMessages.appendChild(userDiv);
+
+        chatInput.value = "";
+
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+
+        const botDiv = document.createElement("div");
+
+        botDiv.className = "chat-msg bot";
+
+        botDiv.innerText = "Typing...";
+
+        chatMessages.appendChild(botDiv);
+
+        try {
+
+            const response = await fetch("/api/chat", {
+
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "application/json"
+                },
+
+                body: JSON.stringify({
+                    message: message
+                })
+
+            });
+
+            const data = await response.json();
+
+            botDiv.innerText = data.reply;
+
+        }
+
+        catch (error) {
+
+            botDiv.innerText = "Server error. Try again.";
+
+        }
+
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+
+    }
+
+    chatSend.addEventListener("click", sendMessage);
+
+    chatInput.addEventListener("keypress", function (e) {
+
+        if (e.key === "Enter") {
+
+            sendMessage();
+
+        }
+
+    });
+
+});
+
+</script>
+
+{% block extra_js %}{% endblock %}
+
+</body>
+
+</html>

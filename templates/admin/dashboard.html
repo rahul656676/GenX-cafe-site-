@@ -1,0 +1,176 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Admin Dashboard
+{% endblock %}
+
+{% block content %}
+
+<section class="page-hero">
+
+<div class="container text-center">
+
+<h1 class="page-hero-title">
+Admin Dashboard
+</h1>
+
+<p>
+Welcome back, {{ session.user_name }}
+</p>
+
+</div>
+
+</section>
+
+<section class="section-pad">
+
+<div class="container">
+
+<!-- STATS -->
+
+<div class="row g-4 mb-5">
+
+<div class="col-lg-3 col-md-6">
+
+<div class="menu-card p-4 text-center">
+
+<div class="display-4 mb-3">☕</div>
+
+<h2>{{ stats.menu_count }}</h2>
+
+<p>Menu Items</p>
+
+</div>
+
+</div>
+
+<div class="col-lg-3 col-md-6">
+
+<div class="menu-card p-4 text-center">
+
+<div class="display-4 mb-3">📅</div>
+
+<h2>{{ stats.reservations }}</h2>
+
+<p>Reservations</p>
+
+</div>
+
+</div>
+
+<div class="col-lg-3 col-md-6">
+
+<div class="menu-card p-4 text-center">
+
+<div class="display-4 mb-3">⏳</div>
+
+<h2>{{ stats.pending }}</h2>
+
+<p>Pending</p>
+
+</div>
+
+</div>
+
+<div class="col-lg-3 col-md-6">
+
+<div class="menu-card p-4 text-center">
+
+<div class="display-4 mb-3">✉</div>
+
+<h2>{{ stats.contacts }}</h2>
+
+<p>Messages</p>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- QUICK ACTIONS -->
+
+<div class="row g-4 mb-5">
+
+<div class="col-lg-4">
+
+<a href="{{ url_for('admin.menu') }}"
+   class="dashboard-link">
+
+<div class="menu-card p-5 text-center dashboard-action">
+
+<div class="display-3 mb-4">
+🍔
+</div>
+
+<h3>
+Menu Management
+</h3>
+
+<p>
+Add, edit and delete menu items
+</p>
+
+</div>
+
+</a>
+
+</div>
+
+<div class="col-lg-4">
+
+<a href="{{ url_for('admin.reservations') }}"
+   class="dashboard-link">
+
+<div class="menu-card p-5 text-center dashboard-action">
+
+<div class="display-3 mb-4">
+📋
+</div>
+
+<h3>
+Reservations
+</h3>
+
+<p>
+Manage customer bookings
+</p>
+
+</div>
+
+</a>
+
+</div>
+
+<div class="col-lg-4">
+
+<a href="{{ url_for('admin.contacts') }}"
+   class="dashboard-link">
+
+<div class="menu-card p-5 text-center dashboard-action">
+
+<div class="display-3 mb-4">
+💬
+</div>
+
+<h3>
+Contact Messages
+</h3>
+
+<p>
+View customer inquiries
+</p>
+
+</div>
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+{% endblock %}

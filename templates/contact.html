@@ -1,0 +1,202 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Contact Us - Gen X Cafe
+{% endblock %}
+
+{% block content %}
+
+<section class="page-hero">
+
+    <div class="container text-center">
+
+        <h1 class="page-hero-title">
+            Contact Us
+        </h1>
+
+        <p>
+            We'd love to hear from you ☕
+        </p>
+
+    </div>
+
+</section>
+
+<section class="section-pad">
+
+    <div class="container">
+
+        <div class="row g-5">
+
+            <!-- CONTACT FORM -->
+
+            <div class="col-lg-7">
+
+                <div class="menu-card p-4">
+
+                    <h3 class="mb-4">
+                        Send Message
+                    </h3>
+
+                    <form method="POST">
+
+                        <div class="row g-4">
+
+                            <div class="col-md-6">
+
+                                <label class="form-label">
+                                    Full Name
+                                </label>
+
+                                <input type="text"
+                                       name="name"
+                                       class="form-control"
+                                       required>
+
+                            </div>
+
+                            <div class="col-md-6">
+
+                                <label class="form-label">
+                                    Email Address
+                                </label>
+
+                                <input type="email"
+                                       name="email"
+                                       class="form-control"
+                                       required>
+
+                            </div>
+
+                            <div class="col-12">
+
+                                <label class="form-label">
+                                    Subject
+                                </label>
+
+                                <input type="text"
+                                       name="subject"
+                                       class="form-control">
+
+                            </div>
+
+                            <div class="col-12">
+
+                                <label class="form-label">
+                                    Message
+                                </label>
+
+                                <textarea name="message"
+                                          rows="6"
+                                          class="form-control"
+                                          required></textarea>
+
+                            </div>
+
+                            <div class="col-12">
+
+                                <button type="submit"
+                                        class="btn btn-primary btn-lg">
+
+                                    Send Message
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+            <!-- CONTACT INFO -->
+
+            <div class="col-lg-5">
+
+                <div class="menu-card p-4 mb-4">
+
+                    <h3 class="mb-4">
+                        Contact Information
+                    </h3>
+
+                    <div class="mb-4">
+
+                        <h5>
+                            <i class="bi bi-geo-alt-fill text-warning"></i>
+                            Address
+                        </h5>
+
+                        <p>
+                            MG Road, Jaipur, Rajasthan
+                        </p>
+
+                    </div>
+
+                    <div class="mb-4">
+
+                        <h5>
+                            <i class="bi bi-telephone-fill text-warning"></i>
+                            Phone
+                        </h5>
+
+                        <p>
+                            +91 98765 43210
+                        </p>
+
+                    </div>
+
+                    <div class="mb-4">
+
+                        <h5>
+                            <i class="bi bi-envelope-fill text-warning"></i>
+                            Email
+                        </h5>
+
+                        <p>
+                            hello@genxcafe.com
+                        </p>
+
+                    </div>
+
+                    <div>
+
+                        <h5>
+                            <i class="bi bi-clock-fill text-warning"></i>
+                            Opening Hours
+                        </h5>
+
+                        <p>
+                            Mon - Sun : 7AM - 11PM
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <!-- MAP -->
+
+                <div class="menu-card overflow-hidden">
+
+                    <iframe
+                        src="https://www.google.com/maps?q=jaipur&output=embed"
+                        width="100%"
+                        height="300"
+                        style="border:0;"
+                        allowfullscreen=""
+                        loading="lazy">
+                    </iframe>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

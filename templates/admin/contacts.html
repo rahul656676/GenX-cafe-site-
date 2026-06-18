@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Contact Messages
+{% endblock %}
+
+{% block content %}
+
+<section class="page-hero">
+
+<div class="container text-center">
+
+<h1 class="page-hero-title">
+Contact Messages
+</h1>
+
+<p>
+Customer inquiries and support
+</p>
+
+</div>
+
+</section>
+
+<section class="section-pad">
+
+<div class="container">
+
+<div class="row g-4">
+
+{% for item in items %}
+
+<div class="col-lg-6">
+
+<div class="menu-card p-4 h-100">
+
+<div class="d-flex justify-content-between mb-3">
+
+<h4>
+{{ item.name }}
+</h4>
+
+{% if item.is_read %}
+
+<span class="badge bg-success">
+Read
+</span>
+
+{% else %}
+
+<span class="badge bg-warning text-dark">
+New
+</span>
+
+{% endif %}
+
+</div>
+
+<p class="text-warning">
+{{ item.email }}
+</p>
+
+<h5>
+{{ item.subject }}
+</h5>
+
+<p>
+{{ item.message }}
+</p>
+
+<div class="d-flex gap-2 mt-3">
+
+<a href="{{ url_for('admin.contact_read', id=item.id) }}"
+   class="btn btn-primary btn-sm">
+
+Mark Read
+
+</a>
+
+<form method="POST"
+      action="{{ url_for('admin.contact_delete', id=item.id) }}">
+
+<button class="btn btn-danger btn-sm">
+
+Delete
+
+</button>
+
+</form>
+
+</div>
+
+</div>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+</div>
+
+</section>
+
+{% endblock %}

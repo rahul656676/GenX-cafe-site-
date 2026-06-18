@@ -1,0 +1,237 @@
+{% extends 'base.html' %}
+
+{% block title %}
+About Us - Gen X Cafe
+{% endblock %}
+
+{% block content %}
+
+<section class="page-hero">
+
+    <div class="container text-center">
+
+        <h1 class="page-hero-title">
+            About Gen X Cafe
+        </h1>
+
+        <p>
+            More than coffee. It's an experience.
+        </p>
+
+    </div>
+
+</section>
+
+<section class="section-pad">
+
+    <div class="container">
+
+        <div class="row align-items-center g-5">
+
+            <div class="col-lg-6">
+
+                <img src="{{ url_for('static', filename='images/cafe1.jpg') }}"
+                     class="img-fluid rounded-4 shadow">
+
+            </div>
+
+            <div class="col-lg-6">
+
+                <span class="section-label">
+                    Our Story
+                </span>
+
+                <h2 class="section-title">
+                    Brewing Happiness Since 2024
+                </h2>
+
+                <p class="text-light">
+
+                    Gen X Cafe started with one mission:
+                    to create a warm and premium place
+                    where coffee lovers can relax,
+                    work and create memories.
+
+                </p>
+
+                <p class="text-light">
+
+                    From handcrafted coffees to gourmet
+                    burgers and desserts, every item is
+                    made with passion and quality ingredients.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="section-pad bg-dark">
+
+    <div class="container text-center">
+
+        <span class="section-label">
+            Why Choose Us
+        </span>
+
+        <h2 class="section-title mb-5">
+            What Makes Gen X Special
+        </h2>
+
+        <div class="row g-4">
+
+            <div class="col-lg-4">
+
+                <div class="menu-card p-4 h-100">
+
+                    <i class="bi bi-cup-hot fs-1 text-warning"></i>
+
+                    <h4 class="mt-3">
+                        Premium Coffee
+                    </h4>
+
+                    <p>
+                        Freshly brewed coffee made
+                        from high quality beans.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-4">
+
+                <div class="menu-card p-4 h-100">
+
+                    <i class="bi bi-star-fill fs-1 text-warning"></i>
+
+                    <h4 class="mt-3">
+                        Best Ambience
+                    </h4>
+
+                    <p>
+                        Modern cafe interior with
+                        cozy seating and vibes.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-4">
+
+                <div class="menu-card p-4 h-100">
+
+                    <i class="bi bi-heart-fill fs-1 text-warning"></i>
+
+                    <h4 class="mt-3">
+                        Friendly Service
+                    </h4>
+
+                    <p>
+                        We believe every customer
+                        deserves special treatment.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="section-pad">
+
+    <div class="container">
+
+        <div class="text-center mb-5">
+
+            <span class="section-label">
+                Our Team
+            </span>
+
+            <h2 class="section-title">
+                Meet Our Experts
+            </h2>
+
+        </div>
+
+        <div class="row g-4">
+
+            <div class="col-lg-4">
+
+                <div class="menu-card p-4 text-center">
+
+                    <img src="{{ url_for('static', filename='images/team1.jpg') }}"
+                         class="rounded-circle mb-3"
+                         width="120"
+                         height="120">
+
+                    <h4>
+                        Aarav Sharma
+                    </h4>
+
+                    <p class="text-warning">
+                        Head Barista
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-4">
+
+                <div class="menu-card p-4 text-center">
+
+                    <img src="{{ url_for('static', filename='images/team2.jpg') }}"
+                         class="rounded-circle mb-3"
+                         width="120"
+                         height="120">
+
+                    <h4>
+                        Priya Mehta
+                    </h4>
+
+                    <p class="text-warning">
+                        Cafe Manager
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-4">
+
+                <div class="menu-card p-4 text-center">
+
+                    <img src="{{ url_for('static', filename='images/team3.jpg') }}"
+                         class="rounded-circle mb-3"
+                         width="120"
+                         height="120">
+
+                    <h4>
+                        Rahul Verma
+                    </h4>
+
+                    <p class="text-warning">
+                        Master Chef
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

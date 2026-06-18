@@ -1,0 +1,224 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Menu Management
+{% endblock %}
+
+{% block content %}
+
+<section class="page-hero">
+
+    <div class="container text-center">
+
+        <h1 class="page-hero-title">
+            Menu Management
+        </h1>
+
+        <p>
+            Manage all Gen X Cafe menu items
+        </p>
+
+    </div>
+
+</section>
+
+<section class="section-pad">
+
+    <div class="container">
+
+        <!-- TOP BAR -->
+
+        <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-5">
+
+            <div>
+
+                <h2 class="mb-1">
+                    All Menu Items
+                </h2>
+
+                <p class="text-muted mb-0">
+                    Add, edit or remove food items
+                </p>
+
+            </div>
+
+            <a href="{{ url_for('admin.menu_add') }}"
+               class="btn btn-primary btn-lg">
+
+                <i class="bi bi-plus-circle"></i>
+                Add New Item
+
+            </a>
+
+        </div>
+
+        <!-- MENU GRID -->
+
+        <div class="row g-4">
+
+            {% for item in items %}
+
+            <div class="col-lg-4 col-md-6">
+
+                <div class="menu-card h-100">
+
+                    <!-- IMAGE -->
+
+                    <div class="menu-img-wrap position-relative">
+
+                        {% if item.image and item.image != 'default.jpg' %}
+
+                        <img src="{{ url_for('uploaded_file', filename=item.image) }}"
+                             alt="{{ item.name }}"
+                             class="menu-img">
+
+                        {% else %}
+
+                        <img src="{{ url_for('static', filename='images/default-food.jpg') }}"
+                             alt="{{ item.name }}"
+                             class="menu-img">
+
+                        {% endif %}
+
+                        <!-- FEATURED -->
+
+                        {% if item.is_featured %}
+
+                        <span class="featured-badge position-absolute top-0 start-0 m-3 badge bg-warning text-dark">
+
+                            ⭐ Featured
+
+                        </span>
+
+                        {% endif %}
+
+                    </div>
+
+                    <!-- BODY -->
+
+                    <div class="menu-body p-4 d-flex flex-column h-100">
+
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+
+                            <h4 class="menu-name">
+
+                                {{ item.name }}
+
+                            </h4>
+
+                            <span class="menu-price">
+
+                                ₹{{ item.price }}
+
+                            </span>
+
+                        </div>
+
+                        <p class="menu-desc flex-grow-1">
+
+                            {{ item.description }}
+
+                        </p>
+
+                        <!-- CATEGORY -->
+
+                        <div class="mb-3 d-flex flex-wrap gap-2">
+
+                            <span class="badge bg-warning text-dark">
+
+                                {{ item.category }}
+
+                            </span>
+
+                            {% if item.is_available %}
+
+                            <span class="badge bg-success">
+
+                                Available
+
+                            </span>
+
+                            {% else %}
+
+                            <span class="badge bg-danger">
+
+                                Unavailable
+
+                            </span>
+
+                            {% endif %}
+
+                        </div>
+
+                        <!-- ACTIONS -->
+
+                        <div class="d-flex gap-2 mt-auto">
+
+                            <a href="{{ url_for('admin.menu_edit', id=item.id) }}"
+                               class="btn btn-primary flex-fill">
+
+                                <i class="bi bi-pencil-square"></i>
+                                Edit
+
+                            </a>
+
+                            <form method="POST"
+                                  action="{{ url_for('admin.menu_delete', id=item.id) }}"
+                                  class="flex-fill">
+
+                                <button type="submit"
+                                        class="btn btn-danger w-100">
+
+                                    <i class="bi bi-trash"></i>
+                                    Delete
+
+                                </button>
+
+                            </form>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+        <!-- EMPTY -->
+
+        {% if not items %}
+
+        <div class="text-center py-5">
+
+            <div class="display-1 mb-4">
+                🍔
+            </div>
+
+            <h3>
+                No Menu Items Found
+            </h3>
+
+            <p class="text-muted">
+                Start by adding your first menu item
+            </p>
+
+            <a href="{{ url_for('admin.menu_add') }}"
+               class="btn btn-primary btn-lg mt-3">
+
+                Add First Item
+
+            </a>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</section>
+
+{% endblock %}
